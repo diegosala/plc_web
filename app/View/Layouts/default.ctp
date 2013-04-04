@@ -27,36 +27,33 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
-	<?php
-		echo $this->Html->meta('icon');
-
-		echo $this->Html->css('cake.generic');
-
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
+	<?php		
+		echo $this->Html->script('jquery-1.9.1.min.js');
+		echo $this->Html->script('bootstrap.min.js');
+        echo $this->Html->css('bootstrap.min.css');
+		echo $this->Html->css('bootstrap-responsive.min.css');
 	?>
 </head>
-<body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
-		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
+<body style="padding-top: 60px;">
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#">Title</a>
+			<ul class="nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">Link</a></li>
+				<li><a href="#">Link</a></li>
+			</ul>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+</div>
+<div class="container">
+	<?php echo $this->Session->flash(); ?>
+	<?php echo $this->fetch('content'); ?>	
+</div>
+
+<footer style="margin-top: 45px; padding-top: 5px; border-top: 1px solid #eaeaea; color: #999">
+<?php echo $this->element('sql_dump'); ?>
+</footer>
 </body>
 </html>
