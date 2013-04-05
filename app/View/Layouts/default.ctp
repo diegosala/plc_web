@@ -38,11 +38,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" href="#">Title</a>
-			<ul class="nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
+			<a class="brand" href="#" style="padding: 5px 20px 5px"><?php echo $this->Html->image("logo_29h.png")?></a>
+			<ul class="nav" id="barraNavegacion">
+				<li class="active">
+                <?php echo $this->Html->link("Procesos", array(
+                        'controller'=>"Procesos",
+                        'action'=>"listado",
+                    )
+                ); ?>
+                </li>				
 			</ul>
 		</div>
 	</div>
@@ -53,7 +57,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 </div>
 
 <footer style="margin-top: 45px; padding-top: 5px; border-top: 1px solid #eaeaea; color: #999">
-<?php echo $this->element('sql_dump'); ?>
+<?php //echo $this->element('sql_dump'); ?>
 </footer>
 </body>
 </html>
