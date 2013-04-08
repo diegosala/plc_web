@@ -9,14 +9,8 @@
             $this->loadModel('EtapaProceso');
             $this->loadModel('VelocidadProceso');
             
-            $this->Proceso->recursive = 2;
-            
-            
-            $this->Paginator->settings = array('limit' => 5);
-            
-            
-            $procesos = $this->Paginator->paginate('Proceso');
-                        
+            $this->Paginator->settings = array('limit' => 5);                        
+            $procesos = $this->Paginator->paginate('Proceso');            
             
             $this->set("procesos", $procesos);
             $this->set("isAjax", $this->request->is('ajax'));
