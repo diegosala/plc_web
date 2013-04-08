@@ -40,7 +40,16 @@
                 );
                 ?>
             </td>
-            <td style="text-align: center;"><a href="#"><i class="icon-print"></i></a></td>
+            <td style="text-align: center;">
+                <?php echo $this->Html->link("<i class='icon-print'></i>", array(
+                    'controller'=>"Procesos",
+                    'action'=>"reporte",
+                    $proceso['Proceso']['id']
+                    ),
+                    array('escape' => false)
+                );
+                ?>
+            </td>
         </tr>     
 <?php  
     }        

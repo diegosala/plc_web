@@ -7,5 +7,6 @@
                 'foreignKey' => 'id_etapa',                
             )
         );
+        public $order = array("EtapaProceso.f_fin ASC");
     }
 ?>
