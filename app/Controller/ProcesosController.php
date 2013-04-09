@@ -21,10 +21,11 @@
             $this->loadModel('Etapa');
             $this->loadModel('EtapaProceso');
             $this->loadModel('VelocidadProceso');
-            
-            $this->Proceso->recursive = 2;
+                        
             $this->set("proceso", $this->Proceso->findById($idProceso));
             $this->set("etapas", $this->EtapaProceso->findAllByidProceso($idProceso));
+            
+            $this->set('title_for_layout', "Detalle de proceso {$idProceso}");
         }
         
         private function formatearHora($dateTimeSQL) {
@@ -63,7 +64,7 @@
             
             $pdf->ezText("<u>INFORME DE OPERACION</u>", 16, array('justification'=>"center"));
             $pdf->ezSetDy(-$fuente);
-            $pdf->ezText("Por el presente documento se certifica la operación de la granuladora marca: PKalp21", $fuente, array('justification'=>"left"));            
+            $pdf->ezText("Por el presente documento se certifica la operación de la granuladora marca: Collette", $fuente, array('justification'=>"left"));            
             $pdf->ezText("<u>Producto elaborado:</u> <i>{$proceso['Proceso']['d_producto']}</i>", $fuente, array('spacing'=>2));
             $pdf->ezText("<u>Numero de lote:</u> <i>{$proceso['Proceso']['d_lote']}</i>", $fuente, array('spacing'=>2));
             $pdf->ezText("<u>Operario a cargo:</u> <i>{$proceso['Proceso']['d_operario']}</i>", $fuente, array('spacing'=>2));
@@ -89,8 +90,12 @@
             
             $pdf->ezSetDy(-30);
             $pdf->ezText("<u>Alarmas y novedades:</u>");
+            
             $pdf->addText($pdf->ez['leftMargin'], 100, $fuente, "Firma y aclaración responsable Producción:");
-            $pdf->line(350, 100, $pdf->ez['pageWidth'] - $pdf->ez['leftMargin'], 100);
+            $pdf->line(350, 100, $pdf->ez['pageWidth'] - $pdf->ez['leftMargin'], 100);            
+            
+            $pdf->ezSetY(70);
+            $pdf->ezText("Informe generado automáticamente - Controling - www.controling.com.ar", $fuente -2, array("justification"=>"center"));            
                     
             $output = $pdf->ezOutput();
             ## PDF - FIN ##

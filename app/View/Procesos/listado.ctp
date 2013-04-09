@@ -19,7 +19,7 @@
                 <td style="width: 21%;"><?php echo $this->Paginator->sort('d_operario', "Operario") ?></td>
                 <td style="width: 16%;"><?php echo $this->Paginator->sort('f_inicio', "Inicio") ?></td>
                 <td style="width: 7%; text-align: center;">Ver</td>
-                <td style="width: 7%; text-align: center;">Exportar</td>
+                <td style="width: 7%; text-align: center;">Informe</td>
             </tr>        
 <?php
     foreach($procesos as $proceso) {
@@ -29,7 +29,7 @@
             <td><?php echo $proceso['Proceso']['d_producto']?></td>
             <td><?php echo $proceso['Proceso']['d_lote']?></td>
             <td><?php echo $proceso['Proceso']['d_operario']?></td>            
-            <td><?php echo $proceso['Proceso']['f_inicio']?></td>
+            <td><?php echo date("d/m/Y H:i:s", strtotime($proceso['Proceso']['f_inicio']))?></td>
             <td style="text-align: center;">
                 <?php echo $this->Html->link("<i class='icon-zoom-in'></i>", array(
                     'controller'=>"Procesos",
