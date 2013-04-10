@@ -7,9 +7,16 @@
 <?php    
     if(!$isAjax) { ?>
 <h1>Procesos</h1>
-<?php 
-    } 
-?>               
+<?php
+echo $this->Form->create(null, array("class"=>"form form-inline"));
+?>
+<div class="row">
+    <div class="span4"><?php echo $this->Form->input('d_producto', array("label"=>"Producto&nbsp;"));?></div>
+    <div class="span4"><?php echo $this->Form->input('d_lote', array("label"=>"Lote&nbsp;"));?></div>
+    <div class="span4"><?php echo $this->Form->input('d_operario', array("label"=>"Operario&nbsp;"));?></div>    
+</div>    
+<br />
+<?php } ?>
 <div id="listado">
     <table class="table table-bordered table-hover">        
             <tr style="font-weight: bold;">

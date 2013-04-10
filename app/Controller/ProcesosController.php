@@ -1,16 +1,30 @@
 <?php
     class ProcesosController extends AppController {
         public $helpers = array ('Paginator', 'Js');
-        public $components = array('Paginator', 'RequestHandler');
+        public $components = array('Paginator', 'RequestHandler', 'Session');
         
-        public function listado() {
+        public function listado() {        
             $this->loadModel('Proceso');
             $this->loadModel('Etapa');
             $this->loadModel('EtapaProceso');
             $this->loadModel('VelocidadProceso');
+                        
+            $this->Paginator->settings = array('limit' => 5);                                    
             
-            $this->Paginator->settings = array('limit' => 5);                        
-            $procesos = $this->Paginator->paginate('Proceso');            
+            $conditions = array();
+            if (!empty($this->request->params['named']['page'])) {
+                $conditions = (array)$this->Session->read('condicionesBusqueda');
+            } else {
+                $this->Session->delete('condicionesBusqueda');
+            }
+            
+            if (isset($this->request->data['Proceso'])) {
+                $conditions["Proceso.d_producto LIKE"] = '%'.$this->request->data['Proceso']['d_producto'].'%';
+                $conditions["Proceso.d_lote LIKE"] = '%'.$this->request->data['Proceso']['d_lote'].'%';
+                $this->Session->write('condicionesBusqueda', $conditions);
+            }
+            
+            $procesos = $this->paginate("Proceso", $conditions);
             
             $this->set("procesos", $procesos);
             $this->set("isAjax", $this->request->is('ajax'));
