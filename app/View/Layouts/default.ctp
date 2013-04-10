@@ -8,8 +8,10 @@
 	<?php		
 		echo $this->Html->script('jquery-1.9.1.min.js');
 		echo $this->Html->script('bootstrap.min.js');
+        echo $this->Html->script('bootstrap-datepicker');
         echo $this->Html->css('bootstrap.min.css');
 		echo $this->Html->css('bootstrap-responsive.min.css');
+        echo $this->Html->css('datepicker');
 	?>
 </head>
 <body style="padding-top: 60px;">

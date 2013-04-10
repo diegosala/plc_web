@@ -19,8 +19,17 @@
             }
             
             if (isset($this->request->data['Proceso'])) {
-                $conditions["Proceso.d_producto LIKE"] = '%'.$this->request->data['Proceso']['d_producto'].'%';
-                $conditions["Proceso.d_lote LIKE"] = '%'.$this->request->data['Proceso']['d_lote'].'%';
+                if (!empty($this->request->data['Proceso']['d_producto']))
+                    $conditions["Proceso.d_producto LIKE"] = '%'.$this->request->data['Proceso']['d_producto'].'%';
+                if (!empty($this->request->data['Proceso']['d_lote']))
+                    $conditions["Proceso.d_lote LIKE"] = '%'.$this->request->data['Proceso']['d_lote'].'%';
+                if (!empty($this->request->data['Proceso']['d_operario']))
+                    $conditions["Proceso.d_operario LIKE"] = '%'.$this->request->data['Proceso']['d_operario'].'%';
+                if (!empty($this->request->data['Proceso']['f_inicio'])) {
+                    $f_inicio = explode("/", $this->request->data['Proceso']['f_inicio']);
+                    $f_inicio = "{$f_inicio[2]}-{$f_inicio[1]}-{$f_inicio[0]}";
+                    $conditions["DATE(Proceso.f_inicio) ="] = $f_inicio;
+                }
                 $this->Session->write('condicionesBusqueda', $conditions);
             }
             
