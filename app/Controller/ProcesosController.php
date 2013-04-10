@@ -12,7 +12,7 @@
             $this->Paginator->settings = array('limit' => 5);                                    
             
             $conditions = array();
-            if (!empty($this->request->params['named']['page'])) {
+            if ((!empty($this->request->params['named']['page'])) || (!empty($this->request->params['named']['sort']))) {
                 $conditions = (array)$this->Session->read('condicionesBusqueda');
             } else {
                 $this->Session->delete('condicionesBusqueda');
