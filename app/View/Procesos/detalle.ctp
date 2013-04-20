@@ -44,6 +44,17 @@ $(document).ready(function(){
     </tr>
     <?php } ?>
 </table>
+<h3>Velocidades</h3>
+<table class="table table-bordered">    
+    <?php for($i=0; $i < count($velocidades); $i++) { 
+        $velocidad = $velocidades[$i];        
+    ?>
+    <tr>
+        <td><?php echo $velocidad['Velocidad']['d_velocidad'] ?></td>
+        <td><?php echo $velocidad['VelocidadProceso']['n_velocidad'] ?> RPM</td>
+    </tr>
+    <?php } ?>
+</table>
 <div class="well">
 <?php echo $this->Html->link("<i class='icon-print'></i> Generar informe", array(
                     'controller'=>"Procesos",

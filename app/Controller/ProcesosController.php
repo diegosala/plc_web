@@ -47,6 +47,7 @@
                         
             $this->set("proceso", $this->Proceso->findById($idProceso));
             $this->set("etapas", $this->EtapaProceso->findAllByidProceso($idProceso));
+			$this->set("velocidades", $this->VelocidadProceso->findAllByidProceso($idProceso));
             
             $this->set('title_for_layout', "Detalle de proceso {$idProceso}");
         }
@@ -65,6 +66,7 @@
                         
             $proceso = $this->Proceso->findById($idProceso);
             $etapas = $this->EtapaProceso->findAllByidProceso($idProceso);            
+			$velocidades = $this->VelocidadProceso->findAllByidProceso($idProceso);
             $fechaHoraInicio = $this->formatearHora($proceso['Proceso']['f_inicio']);
                     
             $filename = "reporte_proceso_{$idProceso}";
@@ -111,6 +113,22 @@
             $pdf->ezSetDy(-10);
             $pdf->ezTable($data, $cols,"",array('showLines'=>2,'shaded'=>0,'cols'=>array(array('width'=>250), array('width'=>125), array('width'=>125))));
             
+			$pdf->ezSetDy(-30);
+            $pdf->ezText("<u>Detalle velocidades de proceso:</u>");            
+                        
+            $data = array();
+            foreach($velocidades as $i=>$velocidad) {
+                $data[$i][0] = $velocidad['Velocidad']['d_velocidad'];
+                $data[$i][1] = $velocidad['VelocidadProceso']['n_velocidad']." RPM";
+            }
+            
+            $cols = array();
+            $cols[0] = "Descripción";
+            $cols[1] = "";           
+            
+            $pdf->ezSetDy(-10);
+            $pdf->ezTable($data, $cols,"",array('header'=>false,'showLines'=>2,'shaded'=>0,'cols'=>array(array('width'=>250), array('width'=>125))));
+			
             $pdf->ezSetDy(-30);
             $pdf->ezText("<u>Alarmas y novedades:</u>");
             

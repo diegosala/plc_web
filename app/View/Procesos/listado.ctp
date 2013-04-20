@@ -15,27 +15,28 @@ $(document).ready(function(){
 <?php
 echo $this->Form->create(null, array("class"=>"form form-inline"));
 ?>
-<div class="row">
-    <div class="span1" style="text-align: right"><?php echo $this->Form->label("Proceso.d_producto", "Producto") ?></div>
-    <div class="span3"><?php echo $this->Form->input('d_producto', array("label"=>false));?></div>
-    <div class="span1" style="text-align: right"><?php echo $this->Form->label("Proceso.d_lote", "Lote") ?></div>
-    <div class="span3"><?php echo $this->Form->input('d_lote', array("label"=>false));?></div>
-    <div class="span2"><?php echo $this->Form->button("<i class='icon-search'></i> Buscar", array("class"=>"btn", "type"=>"submit", "escape"=>false)) ?></div>
-</div>    
-<br />
-<div class="row">
-    <div class="span1" style="text-align: right"><?php echo $this->Form->label("Proceso.d_operario", "Operario") ?></div>
-    <div class="span3"><?php echo $this->Form->input('d_operario', array("label"=>false));?></div>
-    <div class="span1" style="text-align: right"><?php echo $this->Form->label("Proceso.f_inicio", "Fecha") ?></div>
-    <div class="span3">
-        <div class="input-append date" id="dp" data-date="" data-date-format="dd/mm/yyyy">
-            <?php echo $this->Form->input('f_inicio', array("readonly"=>true, "div"=>false, "label" => false, "type"=>"text"));?>
-            <span class="add-on"><i class="icon-th"></i></span>
-        </div>    
+<div class="well">
+    <div class="row">
+        <div class="span1" style="text-align: right"><?php echo $this->Form->label("Proceso.d_producto", "Producto") ?></div>
+        <div class="span3"><?php echo $this->Form->input('d_producto', array("label"=>false));?></div>
+        <div class="span1" style="text-align: right"><?php echo $this->Form->label("Proceso.d_lote", "Lote") ?></div>
+        <div class="span3"><?php echo $this->Form->input('d_lote', array("label"=>false));?></div>
+        <div class="span2"><?php echo $this->Form->button("<i class='icon-search'></i> Buscar", array("class"=>"btn", "type"=>"submit", "escape"=>false)) ?></div>
+    </div>    
+    <br />
+    <div class="row">
+        <div class="span1" style="text-align: right"><?php echo $this->Form->label("Proceso.d_operario", "Operario") ?></div>
+        <div class="span3"><?php echo $this->Form->input('d_operario', array("label"=>false));?></div>
+        <div class="span1" style="text-align: right"><?php echo $this->Form->label("Proceso.f_inicio", "Fecha") ?></div>
+        <div class="span3">
+            <div class="input-append date" id="dp" data-date="" data-date-format="dd/mm/yyyy">
+                <?php echo $this->Form->input('f_inicio', array("readonly"=>true, "div"=>false, "label" => false, "type"=>"text"));?>
+                <span class="add-on"><i class="icon-th"></i></span>
+            </div>    
+        </div>
+        <div class="span2"><?php echo $this->Form->button("<i class='icon-repeat'></i> Limpiar", array("class"=>"btn", "type"=>"reset")) ?></div>
     </div>
-    <div class="span2"><?php echo $this->Form->button("<i class='icon-repeat'></i> Limpiar", array("class"=>"btn", "type"=>"reset")) ?></div>
-</div>
-<br />
+</div>    
 <?php } ?>
 <div id="listado">
     <table class="table table-bordered table-hover">        
