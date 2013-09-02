@@ -10,7 +10,13 @@
         'VelocidadProceso' => array(
             'className' => 'VelocidadProceso',
             'foreignKey' => 'id_proceso',
-            )
+            ),
+		);
+		public $hasOne = array(
+		'Estado' => array(
+			'className' => 'EstadoProceso',
+			'foreignKey' => 'id_proceso'
+			),
         );
     }
 ?>

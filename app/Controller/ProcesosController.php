@@ -44,10 +44,14 @@
             $this->loadModel('Etapa');
             $this->loadModel('EtapaProceso');
             $this->loadModel('VelocidadProceso');
+			$this->loadModel('Estado');
+			$this->loadModel('EstadoProceso');			
                         
-            $this->set("proceso", $this->Proceso->findById($idProceso));
+			$proceso = $this->Proceso->findById($idProceso);						
+            $this->set("proceso", $proceso);
             $this->set("etapas", $this->EtapaProceso->findAllByidProceso($idProceso));
 			$this->set("velocidades", $this->VelocidadProceso->findAllByidProceso($idProceso));
+			$this->set("estados", $this->Estado->findAllByid($proceso['Estado']['id_estado']));			
             
             $this->set('title_for_layout', "Detalle de proceso {$idProceso}");
         }
@@ -63,11 +67,14 @@
             $this->loadModel('Etapa');
             $this->loadModel('EtapaProceso');
             $this->loadModel('VelocidadProceso');
+			$this->loadModel('Estado');
+			$this->loadModel('EstadoProceso');	
                         
             $proceso = $this->Proceso->findById($idProceso);
             $etapas = $this->EtapaProceso->findAllByidProceso($idProceso);            
 			$velocidades = $this->VelocidadProceso->findAllByidProceso($idProceso);
             $fechaHoraInicio = $this->formatearHora($proceso['Proceso']['f_inicio']);
+			$estado = $this->Estado->findAllByid($proceso['Estado']['id_estado']);
                     
             $filename = "reporte_proceso_{$idProceso}";
 
@@ -130,7 +137,7 @@
             $pdf->ezTable($data, $cols,"",array('header'=>false,'showLines'=>2,'shaded'=>0,'cols'=>array(array('width'=>250), array('width'=>125))));
 			
             $pdf->ezSetDy(-30);
-            $pdf->ezText("<u>Alarmas y novedades:</u>");
+            $pdf->ezText("<u>Alarmas y novedades:</u> {$estado[0]['Estado']['d_estado']}");
             
             $pdf->addText($pdf->ez['leftMargin'], 100, $fuente, "Firma y aclaración responsable Producción:");
             $pdf->line(350, 100, $pdf->ez['pageWidth'] - $pdf->ez['leftMargin'], 100);            

@@ -21,7 +21,11 @@ $(document).ready(function(){
     <tr>
         <td><strong>Fecha y hora de inicio</strong></td>
         <td><?php echo date("d/m/Y H:i:s", strtotime($proceso['Proceso']['f_inicio']))?></td>
-    </tr>    
+    </tr> 
+	<tr>
+        <td><strong>Estado</strong></td>
+        <td><?php echo $estados[0]['Estado']['d_estado'] ?></td>
+    </tr>
 </table>
 <h3>Detalle pasos de proceso</h3>
 <table class="table table-bordered table-striped">
